@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct QuestionBackgroundImage: View {
-    var question: Question
     
     var body: some View {
         Image(systemName: "ant")
@@ -25,6 +24,6 @@ struct QuestionBackgroundImage: View {
 
 struct QuestionBackgroundImage_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionBackgroundImage(question: QuestionLoader.randomQuestion())
+        QuestionBackgroundImage()
     }
 }
