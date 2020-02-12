@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct QuestionBank {
+    var questions: [Question]
+}

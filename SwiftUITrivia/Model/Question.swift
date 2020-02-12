@@ -8,31 +8,31 @@
 
 import Foundation
 
-struct Question {
-    let category: String
+struct Question: Codable {
+    let category: Category
     let type: QuestionType
     let difficulty: Difficulty
     let title: String
     let correctAnswer: String
     let incorrectAnswers: [String]
+    
+    private enum CodingKeys: String, CodingKey {
+        case category
+        case type
+        case difficulty
+        case title = "question"
+        case correctAnswer = "correct_answer"
+        case incorrectAnswers = "incorrect_answers"
+    }
 }
 
-enum QuestionType {
+enum QuestionType: String, Codable {
     case multiple
     case boolean
 }
 
-enum Difficulty {
+enum Difficulty: String, Codable, CaseIterable {
     case easy
     case medium
     case hard
-}
-
-class QuestionGenerator {
-    static let shared = QuestionGenerator()
-    
-    func randomQuestion() -> Question {
-        Question(category: "Cinema", type: .multiple, difficulty: .medium, title: "Capital of Australia", correctAnswer: "Canberra", incorrectAnswers: ["Sidney", "Melbourne", "London"])
-    }
-    
 }

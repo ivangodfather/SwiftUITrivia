@@ -5,7 +5,7 @@
          "category":"Entertainment: Video Games",
          "type":"multiple",
          "difficulty":"easy",
-         "question":"Which of these is NOT a team available in the game Pok&eacute;mon Go?",
+         "question":"Which of these is NOT a team available in the game Pokemon Go?",
          "correct_answer":"Team Rocket",
          "incorrect_answers":[
             "Team Instinct",
@@ -39,7 +39,7 @@
          "category":"Entertainment: Television",
          "type":"multiple",
          "difficulty":"medium",
-         "question":"Who co-founded the YouTube Let&#039;s Play channel &quot;Game Grumps&quot; alongside Newgrounds animator Egoraptor?",
+         "question":"Who co-founded the YouTube Let&' Play channel 'Game Grumps' alongside Newgrounds animator Egoraptor?",
          "correct_answer":"JonTron",
          "incorrect_answers":[
             "Pewdiepie",
@@ -51,7 +51,7 @@
          "category":"Entertainment: Music",
          "type":"multiple",
          "difficulty":"easy",
-         "question":"Which Beatles album does NOT feature any of the band members on it&#039;s cover?",
+         "question":"Which Beatles album does NOT feature any of the band members on it&' cover?",
          "correct_answer":"The Beatles (White Album)",
          "incorrect_answers":[
             "Rubber Soul",
@@ -63,7 +63,7 @@
          "category":"Entertainment: Books",
          "type":"multiple",
          "difficulty":"medium",
-         "question":"The title of Adolf Hitler&#039;s autobiography &quot;Mein Kampf&quot; is what when translated to English?",
+         "question":"The title of Adolf Hitler's autobiography 'Mein Kampf' is what when translated to English?",
          "correct_answer":"My Struggle",
          "incorrect_answers":[
             "My Hatred",
@@ -87,7 +87,7 @@
          "category":"Entertainment: Japanese Anime & Manga",
          "type":"multiple",
          "difficulty":"easy",
-         "question":"In &quot;To Love-Ru&quot;, Ren and Run are from what planet?",
+         "question":"In <To Love-Ru>, Ren and Run are from what planet?",
          "correct_answer":"Memorze",
          "incorrect_answers":[
             "Deviluke",
@@ -111,7 +111,7 @@
          "category":"Entertainment: Film",
          "type":"multiple",
          "difficulty":"hard",
-         "question":"What was Humphrey Bogart&#039;s middle name?",
+         "question":"What was Humphrey Bogart's middle name?",
          "correct_answer":"DeForest",
          "incorrect_answers":[
             "DeWinter",

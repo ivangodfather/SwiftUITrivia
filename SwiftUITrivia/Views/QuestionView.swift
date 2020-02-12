@@ -9,13 +9,60 @@
 import SwiftUI
 
 struct QuestionView: View {
+    
+    @Binding var question: Question
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { geometry in
+            ZStack {
+                //QuestionBackgroundImage(question: self.question)
+                VStack {
+                    Spacer()
+                    HStack {
+                        Image(systemName: self.question.category.systemName())
+                        Text(self.question.category.rawValue).font(.title)
+                    }
+                    .foregroundColor(Color.d)
+
+                    .lineLimit(2)
+                    
+                    Text(self.question.title)
+                        .font(.title)
+                        .foregroundColor(Color.d)
+                        .padding(16)
+                        .background(Color.b)
+                        .cornerRadius(12)
+                        .padding(16)
+                    
+                    ForEach(self.getAnswers(from: self.question), id: \.self) { answer in
+                        QuestionAnswerView(question: self.$question, answer: answer, geometry: geometry)
+                    }
+                    Spacer()
+                    DifficultyView(difficulty: self.question.difficulty).frame(width: 200, height: 100)
+                }
+            }
+        }
+    }
+    
+    private func getAnswers(from question: Question) -> [String] {
+        let allAnswers = question.incorrectAnswers + [question.correctAnswer]
+        return allAnswers.shuffled()
     }
 }
 
 struct QuestionView_Previews: PreviewProvider {
+    @State static var question = QuestionLoader.randomQuestion()
+    
     static var previews: some View {
-        QuestionView()
+        return QuestionView(question: $question)
     }
+}
+
+
+extension Color {
+    static let a = Color(red: 0.38, green: 0.92, blue: 0.91)
+    static let b = Color(red: 1.00, green: 0.99, blue: 0.93)
+    static let c = Color(red: 0.99, green: 0.62, blue: 0.48)
+    static let d = Color(red: 0.96, green: 0.24, blue: 0.42)
+    static let e = Color(red: 0.9, green: 0.1, blue: 0.1)
 }

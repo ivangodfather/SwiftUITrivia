@@ -9,13 +9,39 @@
 import SwiftUI
 
 struct QuestionAnswerView: View {
+    
+    @Binding var question: Question
+    var answer: String
+    var geometry: GeometryProxy
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Button(action: {
+            self.question = QuestionLoader.randomQuestion()
+        }) {
+            Text(self.answer)
+                .font(.title)
+                .padding(8)
+                .frame(width: geometry.size.width - 16)
+        }
+            .background(Color.d)
+            .foregroundColor(Color.white)
+            .cornerRadius(12)
+            .padding(12)
     }
 }
 
 struct QuestionAnswerView_Previews: PreviewProvider {
+    
+    @State static var question = QuestionLoader.randomQuestion()
     static var previews: some View {
-        QuestionAnswerView()
+        GeometryReader { geometry in
+            VStack {
+                QuestionAnswerView(question: $question, answer: "Random answer",  geometry: geometry)
+                QuestionAnswerView(question: $question, answer: "Random answer",  geometry: geometry)
+                QuestionAnswerView(question: $question, answer: "Random answer",  geometry: geometry)
+                
+            }
+        }
     }
 }
