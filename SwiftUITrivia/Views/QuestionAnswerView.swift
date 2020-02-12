@@ -10,14 +10,15 @@ import SwiftUI
 
 struct QuestionAnswerView: View {
     
-    @Binding var question: Question
+    var question: Question
     var answer: String
     var geometry: GeometryProxy
-    
+    var didSelectAnswer: (String) -> ()
+        
     var body: some View {
         
         Button(action: {
-            self.question = QuestionLoader.randomQuestion()
+            self.didSelectAnswer(self.answer)
         }) {
             Text(self.answer)
                 .font(.title)
@@ -33,13 +34,13 @@ struct QuestionAnswerView: View {
 
 struct QuestionAnswerView_Previews: PreviewProvider {
     
-    @State static var question = QuestionLoader.randomQuestion()
+    static var question = QuestionLoader.randomQuestion()
     static var previews: some View {
         GeometryReader { geometry in
             VStack {
-                QuestionAnswerView(question: $question, answer: "Random answer",  geometry: geometry)
-                QuestionAnswerView(question: $question, answer: "Random answer",  geometry: geometry)
-                QuestionAnswerView(question: $question, answer: "Random answer",  geometry: geometry)
+                QuestionAnswerView(question: question, answer: "Random answer",  geometry: geometry, didSelectAnswer: {_ in })
+                QuestionAnswerView(question: question, answer: "Random answer",  geometry: geometry, didSelectAnswer: {_ in })
+                QuestionAnswerView(question: question, answer: "Random answer",  geometry: geometry, didSelectAnswer: {_ in})
                 
             }
         }

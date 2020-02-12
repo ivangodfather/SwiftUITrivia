@@ -9,19 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var question: Question
+    @ObservedObject var game = Game()
     
     var body: some View {
-        NavigationView {
-            QuestionView(question: $question)
-                .navigationBarTitle("Swift UI Trivia")
+        VStack {
+            Text(game.score.description)
+            QuestionView(question: game.currentQuestion, didSelectAnswer: { answer in
+                self.game.didSelect(answer: answer)
+            })
+            
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(question: QuestionLoader.randomQuestion())
+        ContentView()
     }
 }

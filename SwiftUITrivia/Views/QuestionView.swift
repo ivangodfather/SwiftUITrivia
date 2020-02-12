@@ -10,7 +10,8 @@ import SwiftUI
 
 struct QuestionView: View {
     
-    @Binding var question: Question
+    var question: Question
+    var didSelectAnswer: (String) -> ()
     
     var body: some View {
         GeometryReader { geometry in
@@ -21,7 +22,7 @@ struct QuestionView: View {
                     HStack {
                         Image(systemName: self.question.category.systemName())
                         Text(self.question.category.rawValue).font(.title)
-                    }
+                        }
                     .foregroundColor(Color.d)
 
                     .lineLimit(2)
@@ -35,7 +36,7 @@ struct QuestionView: View {
                         .padding(16)
                     
                     ForEach(self.getAnswers(from: self.question), id: \.self) { answer in
-                        QuestionAnswerView(question: self.$question, answer: answer, geometry: geometry)
+                        QuestionAnswerView(question: self.question, answer: answer, geometry: geometry, didSelectAnswer: self.didSelectAnswer)
                     }
                     Spacer()
                     DifficultyView(difficulty: self.question.difficulty).frame(width: 200, height: 100)
@@ -54,7 +55,7 @@ struct QuestionView_Previews: PreviewProvider {
     @State static var question = QuestionLoader.randomQuestion()
     
     static var previews: some View {
-        return QuestionView(question: $question)
+        return QuestionView(question: question, didSelectAnswer: {_ in})
     }
 }
 

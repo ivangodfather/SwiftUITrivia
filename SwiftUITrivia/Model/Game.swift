@@ -12,13 +12,33 @@ import Combine
 final class Game: ObservableObject {
     
     @Published
-    var questions: [Question] = []
+    var questions: [Question] = QuestionLoader.questions()
+    
+    @Published
+    var currentQuestion: Question!
     
     @Published
     var score = 0
     
-    func getQuestions() {
-        questions = QuestionLoader.questions()
+    init() {
+        currentQuestion = questions.first
+    }
+    
+    
+    @discardableResult
+    func nextQuestion() -> Question? {
+        guard !questions.isEmpty else {
+            return nil
+        }
+        currentQuestion = questions.remove(at: 0)
+        return currentQuestion
+    }
+    
+    func didSelect(answer: String) {
+        if currentQuestion?.correctAnswer == answer {
+            score += 1
+        }
+        nextQuestion()
     }
     
     
