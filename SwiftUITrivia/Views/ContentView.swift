@@ -17,16 +17,28 @@ struct ContentView: View {
                 Text("Score")
                 Text(game.score.description)
             }
+            content
             .foregroundColor(Color.a)
             .font(.largeTitle)
 
-            QuestionView(question: game.currentQuestion, didSelectAnswer: { answer in
+        }
+    }
+    
+    private var content: some View {
+        switch game.gameState {
+        case .loading:
+            return AnyView(EmptyView())
+        case .started(let currentQuestion):
+            return AnyView(QuestionView(question: currentQuestion, didSelectAnswer: { answer in
                 self.game.didSelect(answer: answer)
-            })
-            
+            }))
+        case .finished:
+            return AnyView(ResultView(score: game.score))
         }
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

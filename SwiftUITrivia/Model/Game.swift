@@ -9,35 +9,50 @@
 import Foundation
 import Combine
 
+enum GameState {
+    case loading
+    case started(currentQuestion: Question)
+    case finished
+}
+
 final class Game: ObservableObject {
     
-    @Published
-    var questions: [Question] = QuestionLoader.questions()
+    @Published var score = 0
+    @Published var gameState: GameState = .loading
     
-    @Published
-    var currentQuestion: Question!
-    
-    @Published
-    var score = 0
+    private var questions: [Question] = []
+    private var cancellableSet = Set<AnyCancellable>()
+
     
     init() {
-        currentQuestion = questions.first
+        let questions = QuestionAPI().fetch()
+            .receive(on: RunLoop.main)
+        
+        questions
+            .compactMap { $0.first }
+            .map { GameState.started(currentQuestion: $0) }
+            .eraseToAnyPublisher()
+            .assign(to: \.gameState, on: self)
+            .store(in: &cancellableSet)
+        
+        questions.assign(to: \.questions, on: self)
+            .store(in: &cancellableSet)
     }
     
     
-    @discardableResult
-    func nextQuestion() -> Question? {
-        guard !questions.isEmpty else {
-            return nil
+    func nextQuestion() {
+        guard let question = questions.first else {
+            gameState = .finished
+            return
         }
-        currentQuestion = questions.remove(at: 0)
-        return currentQuestion
+        gameState = .started(currentQuestion: question)
     }
     
     func didSelect(answer: String) {
-        if currentQuestion?.correctAnswer == answer {
+        if questions.first?.correctAnswer == answer {
             score += 1
         }
+        questions.remove(at: 0)
         nextQuestion()
     }
     

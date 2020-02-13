@@ -24,6 +24,8 @@
 		42BE261523F3086A0039A704 /* DifficultyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BE261423F3086A0039A704 /* DifficultyView.swift */; };
 		42BE261723F40EBA0039A704 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BE261623F40EBA0039A704 /* Category.swift */; };
 		42BE261B23F42CF30039A704 /* QuestionAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BE261A23F42CF30039A704 /* QuestionAnswerView.swift */; };
+		42BE261E23F52A470039A704 /* QuestionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BE261D23F52A470039A704 /* QuestionAPI.swift */; };
+		42BE262023F5AAFC0039A704 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BE261F23F5AAFC0039A704 /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		42BE261423F3086A0039A704 /* DifficultyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyView.swift; sourceTree = "<group>"; };
 		42BE261623F40EBA0039A704 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		42BE261A23F42CF30039A704 /* QuestionAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerView.swift; sourceTree = "<group>"; };
+		42BE261D23F52A470039A704 /* QuestionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAPI.swift; sourceTree = "<group>"; };
+		42BE261F23F5AAFC0039A704 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 		42BE25D423F2E7FF0039A704 /* SwiftUITrivia */ = {
 			isa = PBXGroup;
 			children = (
+				42BE261C23F52A3B0039A704 /* API */,
 				42BE260F23F2F68E0039A704 /* Resources */,
 				42BE260823F2F2F70039A704 /* Views */,
 				42BE260523F2E8080039A704 /* Model */,
@@ -175,6 +180,7 @@
 				42BE261223F2FF9B0039A704 /* QuestionView.swift */,
 				42BE261423F3086A0039A704 /* DifficultyView.swift */,
 				42BE261A23F42CF30039A704 /* QuestionAnswerView.swift */,
+				42BE261F23F5AAFC0039A704 /* ResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +191,14 @@
 				42BE261023F2F69B0039A704 /* questions.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		42BE261C23F52A3B0039A704 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				42BE261D23F52A470039A704 /* QuestionAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,10 +335,12 @@
 			files = (
 				42BE261523F3086A0039A704 /* DifficultyView.swift in Sources */,
 				42BE261723F40EBA0039A704 /* Category.swift in Sources */,
+				42BE261E23F52A470039A704 /* QuestionAPI.swift in Sources */,
 				42BE261323F2FF9B0039A704 /* QuestionView.swift in Sources */,
 				42BE25D623F2E7FF0039A704 /* AppDelegate.swift in Sources */,
 				42BE260A23F2F3030039A704 /* QuestionBackgroundImage.swift in Sources */,
 				42BE261B23F42CF30039A704 /* QuestionAnswerView.swift in Sources */,
+				42BE262023F5AAFC0039A704 /* ResultView.swift in Sources */,
 				42BE260723F2E82C0039A704 /* Question.swift in Sources */,
 				42BE260C23F2F5710039A704 /* Game.swift in Sources */,
 				42BE25D823F2E7FF0039A704 /* SceneDelegate.swift in Sources */,
