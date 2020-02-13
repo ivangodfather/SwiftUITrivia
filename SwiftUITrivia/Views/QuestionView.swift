@@ -16,17 +16,24 @@ struct QuestionView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                //QuestionBackgroundImage(question: self.question)
+                QuestionBackgroundImage()
                 VStack {
                     Spacer()
                     HStack {
                         Image(systemName: self.question.category.systemName())
-                        Text(self.question.category.rawValue).font(.title)
-                        }
-                    .foregroundColor(Color.d)
+                        Text(self.question.category.rawValue)
+                        
+                    }
+                    .font(.title)
+                    .foregroundColor(Color.white)
+                    .frame(width: geometry.size.width - 32, height: geometry.size.width / 10, alignment: .center)
+                        .background(Color.c)
 
-                    .lineLimit(2)
-                    
+                    .minimumScaleFactor(0.5)
+                    .cornerRadius(12)
+
+
+                                            
                     Text(self.question.title)
                         .font(.title)
                         .foregroundColor(Color.d)

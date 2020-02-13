@@ -14,9 +14,9 @@ struct QuestionBackgroundImage: View {
         Image(systemName: "ant")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .foregroundColor(Color.c)
-            .opacity(0.8)
-            .blur(radius: 5)
+            .foregroundColor(Color.gray)
+            .opacity(0.4)
+            .blur(radius: 12)
             .rotationEffect(.degrees(30))
     }
     

@@ -13,7 +13,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(game.score.description)
+            HStack {
+                Text("Score")
+                Text(game.score.description)
+            }
+            .foregroundColor(Color.a)
+            .font(.largeTitle)
+
             QuestionView(question: game.currentQuestion, didSelectAnswer: { answer in
                 self.game.didSelect(answer: answer)
             })
