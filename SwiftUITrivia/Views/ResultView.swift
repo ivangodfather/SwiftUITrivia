@@ -11,14 +11,25 @@ import SwiftUI
 struct ResultView: View {
     
     var score: Int
+    var game: Game
     
     var body: some View {
         VStack {
+            Spacer()
             Text("🎉").font(.largeTitle)
             Text("Your score is...")
                 .font(.title)
             Text(score.description)
                 .font(.largeTitle)
+            Spacer()
+            Button(action: {
+                self.game.reset()
+            }) {
+                Text("Restart")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.bottom)
+            }
         }
         
     }
@@ -26,6 +37,6 @@ struct ResultView: View {
 
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView(score: 5)
+        ResultView(score: 5, game: Game())
     }
 }

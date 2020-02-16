@@ -8,8 +8,10 @@
 
 import Foundation
 import Combine
+import AudioToolbox
 
 enum GameState {
+    case initial
     case loading
     case started(currentQuestion: Question)
     case finished
@@ -18,14 +20,37 @@ enum GameState {
 final class Game: ObservableObject {
     
     @Published var score = 0
-    @Published var gameState: GameState = .loading
-    
+    @Published var gameState: GameState = .initial
+    var gameSettings = GameSettings()
+
     private var questions: [Question] = []
     private var cancellableSet = Set<AnyCancellable>()
-
     
-    init() {
-        let questions = QuestionAPI().fetch()
+    func startGame() {
+        gameState = .loading
+        score = 0
+        fetchQuestions()
+    }
+    
+    func reset() {
+        gameState = .initial
+    }
+    
+    func didSelect(answer: String) {
+        let isCorrect = questions.first?.correctAnswer == answer
+        if isCorrect {
+            score += 1
+        }
+        if gameSettings.enableSound {
+            playSound(note: isCorrect ? "correct" : "wrong")
+        }
+        questions.remove(at: 0)
+        nextQuestion()
+    }
+    
+    private func fetchQuestions() {
+        let questions = QuestionAPI()
+            .fetch(amount: gameSettings.numberOfQuestions)
             .receive(on: RunLoop.main)
         
         questions
@@ -40,7 +65,7 @@ final class Game: ObservableObject {
     }
     
     
-    func nextQuestion() {
+    private func nextQuestion() {
         guard let question = questions.first else {
             gameState = .finished
             return
@@ -48,13 +73,16 @@ final class Game: ObservableObject {
         gameState = .started(currentQuestion: question)
     }
     
-    func didSelect(answer: String) {
-        if questions.first?.correctAnswer == answer {
-            score += 1
+    func playSound(note : String) {
+        var soundURL: NSURL?
+        var soundID: SystemSoundID = 0
+
+        let filePath = Bundle.main.path(forResource: note, ofType: "wav")
+        soundURL = NSURL(fileURLWithPath: filePath!)
+        if let url = soundURL {
+            AudioServicesCreateSystemSoundID(url, &soundID)
+            AudioServicesPlaySystemSound(soundID)
         }
-        questions.remove(at: 0)
-        nextQuestion()
     }
-    
-    
+
 }

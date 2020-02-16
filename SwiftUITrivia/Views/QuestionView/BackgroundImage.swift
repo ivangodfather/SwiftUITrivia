@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct QuestionBackgroundImage: View {
+struct BackgroundImage: View {
     
     var body: some View {
         Image(systemName: "ant")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .foregroundColor(Color.gray)
-            .opacity(0.4)
+            .opacity(0.3)
             .blur(radius: 12)
             .rotationEffect(.degrees(30))
     }
@@ -24,6 +24,6 @@ struct QuestionBackgroundImage: View {
 
 struct QuestionBackgroundImage_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionBackgroundImage()
+        BackgroundImage()
     }
 }

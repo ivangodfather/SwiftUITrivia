@@ -11,11 +11,14 @@ import Combine
 
 class QuestionAPI {
     
-    private let urlString = "https://opentdb.com/api.php?amount=30"
+    private let urlString = "https://opentdb.com/api.php"
     
-    func fetch() -> AnyPublisher<[Question], Never> {
+    func fetch(amount: Int = 10) -> AnyPublisher<[Question], Never> {
+        var urlComponents = URLComponents(string: urlString)!
+        let queryItem = URLQueryItem(name: "amount", value: amount.description)
+        urlComponents.queryItems = [queryItem]
         return URLSession.shared
-            .dataTaskPublisher(for: URL(string: urlString)!)
+            .dataTaskPublisher(for: urlComponents.url!)
             .map { $0.data }
             .decode(type: QuestionsResponse.self, decoder: JSONDecoder())
             .map { $0.results }
